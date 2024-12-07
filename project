@@ -277,8 +277,7 @@ System.out.print("\033[17;34H"+" ");
       public static void displayWelcomeArt() {
         String welcomeArt = GREEN + "      _    _      _                           \n" +
                             "| |  | |    | |                          \n" +
-                            "| |  | | __| | __
-_  _ _ __   _  \n" +
+                            "| |  | | __| | ___  _ _ __   _  \n" +
                             "| |/\\| |/ _ \\ |/ _/ _ \\| ' ` _ \\ / _ \\ \n" +
                             "\\  /\\  /  _/ | (_| () | | | | | |  __/ \n" +
                             " \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \n" + RESET;
@@ -298,9 +297,7 @@ public static void loadingAnimation() throws InterruptedException {
     String[] spinner = {"|", "/", "-", "\\"};
             clearConsole();
     String[] loadingMessage={"\033[0;0H"+"_____________________________________________________________________",
-        " _     ___  _
-____
-___ _   _ ___       ",
+        " _     ___  ________ _   _ ___       ",
         "| |   |  _  |/ _ \\|  _  \\_   | \\ | |  _ \\      ",
         "| |   | | | / /_\\ \\ | | | | | |  \\| | |  \\/      ",
         "| |   | | | |  _  | | | | | | | . ` | | __       ",
@@ -516,6 +513,7 @@ System.out.print("\033[17;3H"+BLACK+"---------------------");
             if (!continueOrBackToMenu(scr)) break;
         }
     }
+    
 //PART 3 TO SAVE
 
     // Area and Circumference Function
