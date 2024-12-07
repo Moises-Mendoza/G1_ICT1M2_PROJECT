@@ -1,0 +1,710 @@
+package ICT1M2;
+//This Program is design specifically for mobile devices: running it with different device may lead to disruption of design.
+import java.util.Scanner;
+
+public class GROUP1 {
+//PART 1 TO SAVE
+    // ANSI escape codes for colors
+    public static final String RESET = "\033[0m";
+    public static final String BLACK = "\033[30m";
+    public static final String RED = "\033[31m";
+    public static final String GREEN = "\033[32m";
+    public static final String YELLOW = "\033[33m";
+    public static final String BLUE = "\033[34m";
+    public static final String MAGENTA = "\033[35m";
+    public static final String CYAN = "\033[36m";
+    public static final String WHITE = "\033[37m";
+    public static final String BG_BLUE = "\033[44m";
+    public static final String BG_GREEN = "\033[42m";
+    public static final String BG_YELLOW = "\033[43m";
+    public static final String BG_BLACK = "\033[40m";
+    public static final String BG_CYAN = "\033[46m";
+    public static final String BG_MAGENTA = "\033[45m";
+    public static final String BG_RED = "\033[41m";
+
+    public static void main(String[] args) throws InterruptedException {
+        Scanner scr = new Scanner(System.in);
+        String name;
+
+        // Name Input
+        while (true) {
+            System.out.println( "Enter Your Name: ");
+            name = scr.nextLine();
+            clearConsole();
+
+            if (name.matches("[a-zA-Z ]+")) {
+                loadingAnimation();
+                Thread.sleep(2000);
+                break;
+            } else {
+                         
+                          clearConsole();
+                  // ASCII art for error message
+String errorArt = RED + "______________________________________________________________________" + 
+ "                   ____________________________  \n" +
+        "|  __| __ \\ _ \\  _  | _ \\ \n" +
+        "| |__ | |_/ / |_/ / | | | |_/ / \n" +
+        "|  __||    /|    /| | | |    / \n" +
+        "| |___| |\\ \\| |\\ \\  \\_/ / |\\ \\ \n" +
+        "\\____/\\_| \\_\\_| \\_|\\___/\\_| \\_| \n" +     "_____________________________________________________________________"+RESET;
+
+// Centralize the error message and ASCII art
+int consoleWidth = 70; // Adjust this based on your console's width
+
+// Centering the error message
+int spacesForError = (consoleWidth - "Invalid input. Please enter only letters.".length()) / 2;
+System.out.println(" ".repeat(Math.max(spacesForError, 0)) + BG_RED + WHITE + "Invalid input. Please enter only letters." + RESET);
+
+// Centering the ASCII art
+String[] errorArtLines = errorArt.split("\n");
+for (String line : errorArtLines) {
+    int spacesForArt = (consoleWidth - line.length()) / 2;
+    System.out.println(" ".repeat(Math.max(spacesForArt, 0)) + line);
+}
+ Thread.sleep(2000);
+clearConsole();
+continue;
+            }
+        }
+
+        // Main Menu with Design and Background Color
+        while (true) {
+            clearConsole();
+
+            displayWelcomeArt(); // Display art above the main menu
+            System.out.println(
+    CYAN +    " +--------------------------------------------------------------------+" + "\n" +
+                      BG_GREEN + "   ....................................................................."  +   RESET +"\n" +    
+         CYAN +           " +--------------------------------------------------------------------+" + "\n" +
+
+                " +----------------------+                 +---------------------------+" + "\n" +
+             " |       " + GREEN + "[1] Calculator" + RESET +CYAN + " |     "+CYAN +  "            | " +GREEN + "[2] Area & Circumference" + RESET +CYAN + "  |" + "\n" +
+           CYAN +       " +----------------------+                 +---------------------------+" + "\n" +        
+"                ______                   __ " + "\n" +
+"               /  ____/    +--------+    /   |" + "\n" +
+"              /   \\  _    |        |     |   |" + "\n" +
+"              \\    \\_\\  \\   +--------+     |   |" + "\n" +
+"               \\______  /                  |___|" + "\n" +
+"                      \\/       " + "\n" +
+
+              
+          CYAN +       " +----------------------+                 +---------------------------+" + "\n" +
+                " | " + GREEN + "[3] Perimeter & Area" + RESET +CYAN +  " |     "+CYAN + "            | " + GREEN + "[4] Conversion" + RESET +CYAN + "            |" + "\n" +
+          CYAN +       " +----------------------+                 +---------------------------+" + "\n" +
+                " +--------------------------------------------------------------------+" + "\n" +
+                                 "                       " +CYAN + "   | " + MAGENTA + "[5] Credits" + RESET +CYAN +  " |" + "\n" +
+              CYAN +  " +--------------------------------------------------------------------+" );
+     System.out.print("\033[24;55H"+CYAN+"| "+MAGENTA+"[6]End Program");
+           String moveCursor1 = "\033[24;3H";
+System.out.print(moveCursor1+"NAME: "+BG_MAGENTA+WHITE +name+RESET+CYAN+" |"+RESET);
+        // Prompt user input
+          String moveCursor0 = "\033[16;30H";
+        System.out.print(moveCursor0+": ");
+          
+            if (!scr.hasNextInt()) {
+                scr.next(); // Clear invalid input
+                    clearConsole();
+              // Error handling message
+// ASCII art for error message
+String errorArt = RED + "_______________________________________________________________________\n" +
+        "_____________________________\n"+
+        "|  __| __ \\ _ \\  _  | _ \\ \n" +
+        "| |__ | |_/ / |_/ / | | | |_/ / \n" +
+        "|  __||    /|    /| | | |    / \n" +
+        "| |___| |\\ \\| |\\ \\  \\_/ / |\\ \\ \n" +
+        "\\____/\\_| \\_\\_| \\_|\\___/\\_| \\_| \n" +
+        "_____________________________________________________________________";
+
+// Centralize the error message and ASCII art
+int consoleWidth = 70; // Adjust this based on your console's width
+
+// Centering the error message
+int spacesForError = (consoleWidth - "Invalid input. Please enter a valid number.".length()) / 2;
+System.out.println(" ".repeat(Math.max(spacesForError, 0)) + BG_RED + WHITE + "Invalid input. Please enter a valid number." + RESET);
+
+// Centering the ASCII art
+String[] errorArtLines = errorArt.split("\n");
+for (String line : errorArtLines) {
+    int spacesForArt = (consoleWidth - line.length()) / 2;
+    System.out.println(" ".repeat(Math.max(spacesForArt, 0)) + line);
+}
+
+Thread.sleep(1200);
+                continue;
+            }
+
+            int userInput = scr.nextInt();
+            loadingAnimation();
+
+            switch (userInput) {
+                case 1:
+                    calculator(scr);
+                    break;
+
+                case 2:
+                    areaAndCircumference(scr);
+                    break;
+
+                case 3:
+                    areaAndPerimeter(scr);
+                    break;
+
+                case 4:
+                    conversion(scr);
+                    break;
+                    
+
+                    
+                 case 6:
+                 Thread.sleep(900);
+                 clearConsole();
+                   System.out.println(CYAN+" +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                              "  +------------------------+                +------------------------+ \n" +
+                                "  |:                       |                |:                       | \n"+
+                                 "  +------------------------+                +------------------------+ \n"+
+                 "\n" +
+                    "\n" + 
+                            "\n" +
+                     "                 +--------------------------------+     \n" + 
+                                    "                 |                                |\n" +
+                                      "                 +--------------------------------+    \n" +
+                                      "\n" + 
+                                        "\n" + 
+                                               " +--------------------------------------------------------------------+" +"\n" +
+                                                      "                              |        |\n" +         
+                                                                 " +--------------------------------------------------------------------+");
+                  while (true) {
+    System.out.print("\033[2;23H" + CYAN + "Thank you for using!  🙂" + RESET);
+    Thread.sleep(2200);
+    System.out.print("\033[6;4H" + MAGENTA + "[1]Yes");
+    System.out.print("\033[6;46H" + "[2]No" + RESET);
+    System.out.print("\033[12;19H" + MAGENTA + "Do you want to end the program?" + RESET);
+    System.out.print("\033[17;34H");
+
+    String input = scr.next(); // Basahin ang input bilang String
+
+    if (input.equals("1")) {
+        clearConsole();
+       final String GREEN = "\u001B[32m"; // ANSI escape code for green
+final String RESET = "\u001B[0m";  // ANSI reset code
+final int CONSOLE_WIDTH = 70;      // Width of the console
+
+String[] art = {
+   "_____________________________________________________________________",
+    " ___ _                 _                        ",
+    "|_   _| |               | |                       ",
+    "  | | | |__   _ _ _ _ | | _  _   _  __  _   _ ",
+    "  | | | '_ \\ / ` | ' \\| |/ / | | | |/ _ \\| | | |",
+    "  | | | | | | (| | | | |   <  | |_| | () | |_| |",
+    "  \\_/ |_| |_|\\__,_|_| |_|_|\\_\\  \\__, |\\___/ \\__,_|",
+    "                                 __/ |            ",
+    "                                |___/             ",
+    "_____________________________________________________________________"
+};
+
+for (String line : art) {
+    int padding = (CONSOLE_WIDTH - line.length()) / 2;
+    System.out.println(" ".repeat(Math.max(0, padding)) + GREEN + line + RESET);
+}
+       return; // Magpatuloy at lumabas sa loop
+        
+    } else if (input.equals("2")) {
+        break; // Itigil ang programa
+    } else {
+        System.out.print("\033[15;19H" + RED + "Invalid input. Please try again." + RESET);
+        Thread.sleep(300); // Bigyan ng delay bago umulit
+    }
+}
+break;
+
+case 5:
+                // Program credits and member details
+                clearConsole();
+            String credits =     CYAN+    " +--------------------------------------------------------------------+" +"\n" +
+                              "          Program by ICT1M2 Group1          \n" + 
+                                                " +--------------------------------------------------------------------+\n"+
+MAGENTA + 
+           "Leader: Moises Mendoza\n" +
+           "Asst. Leader: Angelica Castañeto\n" +
+           "\n"+
+           "John Albert Ajoc\n" +
+           "Lenard Garcia\n" +
+           "Ezekiel Carl Lutiva\n" +
+           "Kent Aubrey Rostata\n" +
+           "Apple Jean Niosco\n" +
+           "Angelica Amaroto\n" +
+           "Paulyn Zybell Cacao\n" +
+           "Emmanuel Calonia\n" + RESET+
+           "\n"+
+             CYAN+    " +--------------------------------------------------------------------+" +"\n" +
+                                                      "|        |\n" +         
+                                                                 " +--------------------------------------------------------------------+"+RESET;
+                                                                 
+// Centralize the credits and member names
+int consoleWidth = 70; // Adjust based on your console's width
+String[] creditLines = credits.split("\n");
+
+for (String line : creditLines) {
+    int spaces = (consoleWidth - line.length()) / 2;
+    System.out.println(" ".repeat(Math.max(spaces, 0)) + line);
+}
+Thread.sleep(2000);
+System.out.print("\033[17;3H" + GREEN + "Type anything to exit");
+System.out.print("\033[17;34H");
+
+if (scr.hasNextLine()) { // Ensure buffer is cleared
+    scr.nextLine();
+}
+String input = scr.nextLine(); // Now read actual user input
+System.out.print("\033[17;34H"+" ");
+ break; // Lumabas sa loop o itigil ang program=
+                    
+            }
+           
+        }
+    }
+
+    // Function to clear console
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // Function to display welcome ASCII art
+      public static void displayWelcomeArt() {
+        String welcomeArt = GREEN + "      _    _      _                           \n" +
+                            "| |  | |    | |                          \n" +
+                            "| |  | | __| | __
+_  _ _ __   _  \n" +
+                            "| |/\\| |/ _ \\ |/ _/ _ \\| ' ` _ \\ / _ \\ \n" +
+                            "\\  /\\  /  _/ | (_| () | | | | | |  __/ \n" +
+                            " \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \n" + RESET;
+
+        int consoleWidth = 70; // Adjust this based on your console's width
+        String[] lines = welcomeArt.split("\n");
+       
+        for (String line : lines) {
+            int spaces = (consoleWidth - line.length()) / 2;
+            String paddedLine = " ".repeat(spaces) + line;
+            System.out.println(paddedLine);
+        }
+    }
+    // Function to show loading animation
+// Function to show loading animation with ASCII art
+public static void loadingAnimation() throws InterruptedException {
+    String[] spinner = {"|", "/", "-", "\\"};
+            clearConsole();
+    String[] loadingMessage={"\033[0;0H"+"_____________________________________________________________________",
+        " _     ___  _
+____
+___ _   _ ___       ",
+        "| |   |  _  |/ _ \\|  _  \\_   | \\ | |  _ \\      ",
+        "| |   | | | / /_\\ \\ | | | | | |  \\| | |  \\/      ",
+        "| |   | | | |  _  | | | | | | | . ` | | __       ",
+        "| |___\\ \\_/ / | | | |/ / | |_| |\\  | |_\\ \\ _ _ ",
+        "\\_____/\\___/\\_| |_/___/  \\___/\\_| \\_/\\____(|_|)","_____________________________________________________________________",
+        "                                                 ",
+        "                                                 "
+    };
+    System.out.print(" \033[12;0H"+GREEN+
+"\n"+
+"\n"+  
+"______________________________________________________________________\n" +  "______________________________________________________________________");
+    int consoleWidth = 70; // Adjust this based on your console's width
+
+    // Display the ASCII art centered
+    for (String line : loadingMessage) {
+        int spaces = (consoleWidth - line.length()) / 2;
+        System.out.println(" ".repeat(Math.max(spaces, 0)) + GREEN + line + RESET);
+    }
+
+    // Display the loading spinner on the last line
+    for (int i = 0; i < 20; i++) {
+        String progress = spinner[i % spinner.length] + " " + (i * 5) + "%";
+        int spaces = (consoleWidth - progress.length()) / 2;
+
+        System.out.print("\r" + " ".repeat(Math.max(spaces, 0)) + GREEN + progress + RESET); 
+        Thread.sleep(100);
+      
+    }
+  
+
+//PART 2 TO SAVE
+
+    // Display "Loading complete!" message centered
+    String completionMessage = "Loading complete!";
+    int completionSpaces = (consoleWidth - completionMessage.length()) / 2;
+    System.out.print("\r" + " ".repeat(Math.max(completionSpaces, 0)) + GREEN + completionMessage + RESET + "\n");
+   clearConsole(); 
+}
+
+    // Calculator Function
+    public static void calculator(Scanner scr) throws InterruptedException {
+        while (true) {
+            try {
+                clearConsole();
+                System.out.println(YELLOW +    " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +------------------------+    +-----+     +------------------------+ \n" +
+                                "  | :                      |    |:    |     | :                      | \n"+
+                                "  +------------------------+    +-----+     +------------------------+ \n"+
+                         "\n"+
+                                "\n"+
+                                    "\n"+
+                                        "\n"+
+                                  "                  +------------------------------+     \n" + 
+                                    "                  |                              |\n" +
+                                      "                  +------------------------------+    \n" + 
+                                        "\n" +  
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+"  );
+System.out.print("\033[17;3H"+GREEN+"[0]Back to Main Menu");
+        // Prompt user input
+      
+ System.out.print( "\033[13;20H"+GREEN + "Enter first number: " + RESET);
+  
+                   double num1 = scr.nextDouble();
+                   String moveCursor6 = "\033[6;7H";
+System.out.print(moveCursor6+BG_GREEN+BLACK+num1+RESET);
+
+if(num1==0){
+loadingAnimation();
+break;	
+	}
+                   System.out.print("\033[13;20H"+GREEN + "Enter second number: " + RESET);
+                double num2 = scr.nextDouble();  
+                String moveCursor7= "\033[6;49H";
+System.out.print(moveCursor7+BG_GREEN+BLACK+num2+RESET);
+
+if(num2==0){
+loadingAnimation();
+break;	
+	}
+	clearConsole();
+                System.out.println(YELLOW +    " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +------------------------+    +-----+     +------------------------+ \n" +
+                                "  | :                      |    |:    |     | :                      | \n"+
+                                "  +------------------------+    +-----+     +------------------------+ \n"+
+                         "\n"+
+                                "\n"+
+                                    "\n"+
+                                        "\n"+
+                              
+                                  "                  +------------------------------+     \n" + 
+                                    "                  |                              |\n" +
+                                      "                  +------------------------------+    \n" + 
+                                        "\n" + 
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+"  );
+System.out.print(moveCursor6+BG_GREEN+BLACK+num1);
+System.out.print(moveCursor7+num2+RESET);
+
+                   System.out.print("\033[13;20H"+GREEN + "Enter operator(+, -, x, ÷): " + RESET);
+                char operator = scr.next().charAt(0);
+                String moveCursor8= "\033[6;36H";
+System.out.print(moveCursor8+BG_GREEN+BLACK+operator+RESET);
+
+                if (operator != '+' && operator != '-' && operator != 'x' && operator != '÷') {
+                    throw new IllegalArgumentException("\033[15;11H"+RED + "Invalid operator. Please use +, -, x, or ÷ only." + RESET);
+                }             
+                double result = 0;
+                switch (operator) {
+                    case '+': result = num1 + num2; break;
+                    case '-': result = num1 - num2; break;
+                    case 'x': result = num1 * num2; break;
+                    case '÷':
+                        if (num2 == 0) throw new ArithmeticException("\033[15;19H"+RED + "Division by zero is not allowed." + RESET);
+                        result = num1 / num2;
+                        break;
+                }
+                clearConsole();
+                System.out.println(YELLOW +    " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +------------------------+    +-----+     +------------------------+ \n" +
+                                "  | :                      |    |:    |     | :                      | \n"+
+                                "  +------------------------+    +-----+     +------------------------+ \n"+
+                         "\n"+
+                                "\n"+
+                                    "\n"+
+                                        "\n"+
+                              
+                                  "                  +------------------------------+     \n" + 
+                                    "                  |                              |\n" +
+                                      "                  +------------------------------+    \n" + 
+                                        "\n" + 
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+"  );
+   
+System.out.print(moveCursor6+num1);
+System.out.print(moveCursor7+num2);
+System.out.print(moveCursor8+operator);
+
+              System.out.println("\033[13;20H"+BG_GREEN + BLACK + "Result: " + result + RESET);
+            } catch (IllegalArgumentException | ArithmeticException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("\033[15;19H"+RED + "Invalid input. Please try again." + RESET);
+                scr.nextLine(); // Clear buffer
+      
+                }
+            // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;
+        }
+    }
+
+    // Area and Perimeter Function
+    public static void areaAndPerimeter(Scanner scr) throws InterruptedException {
+        while (true) {
+            try {
+                clearConsole();
+                System.out.println(BLUE +   " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +------------------------+                +------------------------+ \n" +
+                                "  |:                       |                |:                       | \n"+
+                                 "  +------------------------+                +------------------------+ \n"+
+                     
+                                     "\n"+
+                                "\n"+
+                                    "\n"+
+                                        "\n"+
+                                  "      +---------------------------+  +---------------------------+    \n" + 
+                                  "      |                           |  |                           |     \n" +
+                                  "      +---------------------------+  +---------------------------+    \n" + 
+                                        "\n" + 
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" );
+          System.out.print("\033[17;3H"+GREEN+"[0]Back to Main Menu");
+       
+                System.out.print("\033[13;9H"+CYAN  + "Enter length: " + RESET);
+                double length = scr.nextDouble();if(length==0){
+loadingAnimation();
+break;	
+	}
+                System.out.print("\033[13;40H"+CYAN + "Enter width: " + RESET);               
+                double width = scr.nextDouble();
+if(width==0){
+loadingAnimation();
+break;	
+	}
+                double area = length * width;
+                double perimeter = 2 * (length + width);
+System.out.print("\033[17;3H"+BLACK+"---------------------");
+                System.out.println("\033[6;5H"+BG_CYAN+BLACK + "Area: " + area+RESET );
+                System.out.println("\033[6;47H"+BG_CYAN+BLACK + "Perimeter: " + perimeter + RESET);
+            } catch (Exception e) {
+                System.out.println("\033[15;19H"+RED + "Invalid input. Please try again." + RESET);
+                scr.nextLine(); // Clear buffer
+            }
+
+            // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;
+        }
+    }
+
+//PART 3 TO SAVE
+
+    // Area and Circumference Function
+    public static void areaAndCircumference(Scanner scr) throws InterruptedException {
+        while (true) {
+            try {
+                clearConsole();
+                System.out.println(MAGENTA + " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +------------------------+                +------------------------+ \n" +
+                                 "  | Area                   |                | Circumference          | \n"+
+                                 "  +------------------------+                +------------------------+ \n"+
+                          "  +------------------------+                +------------------------+ \n" +
+                                "  |:                       |                |:                       | \n"+
+                                 "  +------------------------+                +------------------------+ \n"+
+                                "\n"+
+                                  "                    +------------------------------+     \n" + 
+                                    "                    |                              |\n" +
+                                      "                    +------------------------------+    \n" + 
+                                        "\n" + 
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" );
+     System.out.print("\033[17;3H"+MAGENTA+"[0]Back to Main Menu"+RESET);
+                System.out.print("\033[13;23H"+YELLOW + "Enter radius: " + RESET);
+                double radius = scr.nextDouble();
+if(radius==0){
+loadingAnimation();
+break;	
+	}
+                double area = Math.PI * radius * radius;
+                double circumference = 2 * Math.PI * radius;
+System.out.print("\033[17;3H"+BLACK+"---------------------");
+                System.out.println( "\033[9;5H"+BG_YELLOW+BLACK+ area + RESET);
+                System.out.println("\033[9;47H"+BG_YELLOW+BLACK + circumference + RESET);
+            } catch (Exception e) {
+                System.out.println("\033[15;19H"+RED + "Invalid input. Please try again." + RESET);
+                scr.nextLine(); // Clear buffer
+            }
+
+            // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;
+        }
+    }
+
+    // Conversion Function
+    public static void conversion(Scanner scr) throws InterruptedException {
+        while (true) {
+            try {
+                clearConsole();
+                System.out.println(YELLOW+" +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +----------------------------+        +----------------------------+ \n" +
+                                 "  |             |              |        |             |              | \n"+
+                                 "  +----------------------------+        +----------------------------+ \n"+
+            "  +----------------------------+        +----------------------------+ \n" +
+                                 "  |                            |        |                            | \n"+
+                                 "  +----------------------------+        +----------------------------+ \n"+
+                                          "\n"+
+                                    "                    +------------------------------+     \n" + 
+                                    "                    |                              |\n" +
+                                      "                    +------------------------------+    \n" + 
+                                        "\n" + 
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+");
+              System.out.print("\033[17;3H"+MAGENTA+"[0]Back to Main Menu");
+                System.out.println("\033[6;4H"+GREEN + "[1] cm to mm" + RESET);
+                System.out.println("\033[6;18H"+GREEN + "[2] cm to m" + RESET);
+                System.out.println("\033[6;42H"+GREEN + "[3] mm to cm" + RESET);
+                System.out.println("\033[6;56H"+GREEN + "[4] m to cm" + RESET);
+
+                System.out.print("\033[13;23H"+GREEN+"Enter your choice: "+RESET); 
+            
+            
+                if (!scr.hasNextInt()) {
+                           // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;  // Clear invalid input
+                    System.out.println("\033[15;15H"+RED + "Invalid input. Please enter a valid number." + RESET);
+                    continue;
+                }
+
+                int choice = scr.nextInt();
+                
+                 if(choice == 1) {
+                      System.out.print("\033[9;4H"+GREEN + "         cm  to  mm");
+                }else if(choice == 2 ) {
+                      System.out.print("\033[9;4H"+GREEN + "         cm  to  m");
+                }else if(choice ==3) {
+                      System.out.print("\033[9;4H"+GREEN + "         mm  to  cm");
+                }else if(choice == 4 ) {
+                      System.out.print("\033[9;4H"+GREEN + "         m  to  cm");
+                }else if(choice==0){
+loadingAnimation();
+break;	
+	}
+                      
+                System.out.print("\033[13;23H"+GREEN+"Enter the unit's' value: "+RESET);
+                if (!scr.hasNextDouble()) {
+                          // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;  // Clear invalid input
+                    System.out.println("\033[15;17H"+RED + "Invalid input. Please enter a valid number." + RESET);
+                    continue;
+                }
+
+                double value = scr.nextDouble();
+                double convertedValue = 0;
+if(value==0){
+loadingAnimation();
+break;	
+	}
+                switch (choice) {
+                    case 1: convertedValue = value * 10; break;  // cm to mm
+                    case 2: convertedValue = value / 100; break; // cm to m
+                    case 3: convertedValue = value / 10; break;  // mm to cm
+                    case 4: convertedValue = value * 100; break; // m to cm
+                    default: throw new IllegalArgumentException("\033[15;23H"+RED + "Invalid conversion choice." + RESET);
+                }
+   System.out.print("\033[H\033[2J");
+                       System.out.println(YELLOW+" +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+" + "\n" +
+                   "\n"+
+                                "  +----------------------------+        +----------------------------+ \n" +
+                                 "  |             |              |        |             |              | \n"+
+                                 "  +----------------------------+        +----------------------------+ \n"+
+                 "  +----------------------------+        +----------------------------+ \n" +
+                                 "  |             |              |        |             |              |  \n"+
+                                 "  +----------------------------+        +----------------------------+ \n"+
+                                      "\n"+
+                                    "                    +------------------------------+     \n" + 
+                                    "                    |                              |\n" +
+                                      "                    +------------------------------+    \n" + 
+                                        "\n" + 
+                                            " +--------------------------------------------------------------------+" +"\n" +
+                              "\n" + 
+                                                " +--------------------------------------------------------------------+");
+               System.out.println("\033[6;4H"+GREEN + "[1] cm to mm" + RESET);
+                System.out.println("\033[6;18H"+GREEN + "[2] cm to m" + RESET);
+                System.out.println("\033[6;42H"+GREEN + "[3] mm to cm" + RESET);
+                System.out.println("\033[6;56H"+GREEN + "[4] m to cm" + RESET);
+                
+                  if(choice == 1) {
+                      System.out.print("\033[9;13H"+ BG_GREEN + BLACK+ "cm  to  mm");
+                }else if(choice == 2 ) {
+                      System.out.print("\033[9;13H"+BG_GREEN + BLACK+"cm  to  m");
+                }else if(choice ==3) {
+                      System.out.print("\033[9;13H"+BG_GREEN + BLACK+"mm  to  cm");
+                }else if(choice == 4 ) {
+                      System.out.print("\033[9;13H"+BG_GREEN + BLACK+"m  to  cm");
+                                            }
+                System.out.print("\033[9;53H"+value);                            
+                System.out.println("\033[13;23H"+BG_GREEN + BLACK+ "Converted value: " + convertedValue + RESET);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("\033[15;15H"+RED + "Invalid input. Please try again." + RESET);
+                       // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;// Clear buffer
+            }
+
+            // Option to restart or go back to menu
+            if (!continueOrBackToMenu(scr)) break;
+        }
+    }
+
+    // Function to ask the user if they want to continue or go back to the main menu
+    public static boolean continueOrBackToMenu(Scanner scr) throws InterruptedException {
+        System.out.println("\033[20;25H"+"[1] Back to Main Menu");
+        System.out.println("\033[21;30H"+"[2] Restart");
+        System.out.print("\033[22;26H"+"Enter your choice: ");
+        while (!scr.hasNextInt()) {
+            scr.next(); // Clear invalid input
+            System.out.println("\033[15;11H"+RED + "      Invalid input. Please enter a valid number." + RESET);
+             System.out.print("\033[22;26H"+"Enter your choice: ");
+        }
+        int nextChoice = scr.nextInt();
+        if (nextChoice == 1) {
+            return false;  // User chose to go back to the main menu
+        } else if (nextChoice == 2) {
+            return true;  // User chose to restart the current section
+        } else {
+            System.out.println(RED + "Invalid choice. Please enter [1] to go back to the main menu or [2] to restart." + RESET);
+            return continueOrBackToMenu(scr);  // Recursive call if invalid input
+        }
+    }
+}
