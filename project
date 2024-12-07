@@ -516,7 +516,6 @@ System.out.print("\033[17;3H"+BLACK+"---------------------");
             if (!continueOrBackToMenu(scr)) break;
         }
     }
-
 //PART 3 TO SAVE
 
     // Area and Circumference Function
